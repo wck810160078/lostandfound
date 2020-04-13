@@ -1,0 +1,94 @@
+@charset "utf-8";
+body {
+	margin: 0;
+	padding: 0;
+	/* font-family: "仿宋"; */
+	font-family: "楷体";
+}
+a {
+	text-decoration: none;
+	color: #000000;
+	font-size: 16px;
+}
+a:hover {
+	text-decoration: none;
+}
+a:focus {
+	text-decoration: none;
+}
+#title_id {
+	font-family: "楷体";
+	font-size: 30px;
+	color: black;
+}
+.navList {
+	border-radius: 5px;
+	background-color: #b8c2ff;
+}
+.function_class {
+	margin-top: 10px;
+	color: blue;
+	height: 40px;
+	width: 60px;
+}
+.topNaveList_class {
+	font-family: "楷体";
+	font-size: 20px;
+	color: black;
+}
+.jiantou_class {
+	color: red;
+}
+.gonggao_class {
+	height:30px;
+	font-size: 30px;
+}
+.foot_class {
+	text-align: center;
+	height: 150px;
+	margin-top: 30px;
+	padding-top: 30px;
+	border-top: #000000 solid 1px;
+}
+.footNav_class {
+	height: 30px;
+}
+#registerForm_id,#loginForm_id {
+	font-size: 20px ;
+}
+.newsList_class {
+	width: 100%;
+	text-align: center;
+	padding-top: 30px;
+}
+.newsListUl_class {
+	margin-left: 20px;
+}
+.page {
+	text-align: center;
+	height: 50px;
+	width: 80%;
+	margin-left: 10%;
+}
+.hh {
+	height: 10px;
+}
+.newsList_class {
+	width: 100%;
+	text-align: left;
+	padding-top: 30px;
+}
+.articleDetail {
+	width: 96%;
+	overflow: hidden;
+	text-overflow: ellipsis; 
+	-o-text-overflow: ellipsis;
+	white-space:nowrap;
+	display:block;
+}
+.hidden_class {
+	display: none;
+}
+.articleContentDe_class {
+	font-size: 20px;
+}

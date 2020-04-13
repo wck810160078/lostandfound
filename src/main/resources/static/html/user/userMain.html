@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>商丘一高中校园失物招领网站</title>
+		<script type="text/javascript" src="../../js/jQuery/jquery-2.2.3.min.js"></script>
+		<script type="text/javascript" src="../../js/jQuery/bootstrap/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="../../css/bootstrap/bootstrap.min.css" />
+		<script type="text/javascript" src="../../js/jQuery/bootstrap/bootstrap-paginator.min.js"></script>
+		<link rel="stylesheet" href="https://apps.bdimg.com/libs/bootstrap/3.2.0/css/bootstrap.min.css">
+		<!--toastr-->
+		<link rel="stylesheet" href="../../css/bootstrap/toastr/toastr.css" />
+		<script type="text/javascript" src="../../js/jQuery/bootstrap/toastr/toastr.min.js" ></script>
+		<!--validator表单验证插件-->
+		<link rel="stylesheet" href="../../css/bootstrap/validator/bootstrapValidator.css" />
+		<script type="text/javascript" src="../../js/jQuery/bootstrap/validator/bootstrapValidator.js" ></script>
+		<script type="text/javascript" src="../../js/jQuery/bootstrap/validator/zh_CN.js" ></script>
+	
+		<script src="../../js/url.js"></script>
+		<!-- 工具类方法 -->
+		<script src="../../js/toolsFunction.js"></script>
+		<link rel="stylesheet" href="../../css/user/userMain.css" />
+		<script type="text/javascript" src="../../js/user/userMain.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row clearfix navList">
+				<div class="col-md-12 column">
+					<div class="row clearfix">
+						<div class="col-md-10 column title_class">
+							<a href="userMain.html" id="title_id">
+								商丘一高中校园失物招领网站
+							</a>
+							&nbsp;&nbsp;|
+							<h3 style="display: inline;" id="userName">游客</h3>
+							<h3 style="display: inline;">,欢迎你</h3>
+						</div>
+						<div class="col-md-1 column">
+							<button type="button" class="btn btn-default function_class" id="login_id">登录</button>
+						</div>
+						<div class="col-md-1 column">
+							 <button type="button" class="btn btn-default function_class" id="register_id">注册</button>
+						</div>
+						<div class="col-md-1 column">
+							 <button style="display: none;" type="button" class="btn btn-default function_class" id="logOut_id">退出</button>
+						</div>
+					</div>
+					<!-- 注册对话框 -->
+					<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="registerDialog_id">
+						<div class="modal-dialog modal-lg" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h2 class="modal-title">用户注册</h2>
+								</div>
+								<div class="modal-body">
+									<form  method="post" class="form-horizontal" id="registerForm_id" enctype="multipart/form-data">
+										<div class="form-group">
+											<div hidden="hidden" class="col-sm-2">
+												<input type="text" name="id" class="form-control" id="userId_id" >
+											</div>
+											<label for="" class="col-sm-3 control-label">用户名：</label>
+											<div class="col-sm-6">
+												<input type="text" name="userName" class="form-control" id="userName_id" >
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="" class="col-sm-3 control-label">真实姓名：</label>
+											<div class="col-sm-6">
+												<input type="text" name="name" class="form-control" id="name_id" >
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="" class="col-sm-3 control-label">密码：</label>
+											<div class="col-sm-6">
+												<input type="password" name="passw" class="form-control" id="passw_id" >
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="" class="col-sm-3 control-label">确认密码：</label>
+											<div class="col-sm-6">
+												<input type="password" name="password" class="form-control" id="password_id" >
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="" class="col-sm-3 control-label">邮箱：</label>
+											<div class="col-sm-6">
+												<input type="email" name="email" class="form-control" id="email_id" >
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="" class="col-sm-3 control-label">手机号码：</label>
+											<div class="col-sm-6">
+												<input type="text" name="phoneNumber" class="form-control" id="phoneNumber_id" >
+											</div>
+										</div>
+									</form>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary" id="registerSubmit_id">注册</button>
+									<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 登录对话框 -->
+					<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="loginDialog_id">
+						<div class="modal-dialog modal-lg" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h2 class="modal-title">登录</h2>
+								</div>
+								<div class="modal-body">
+									<form  method="post" class="form-horizontal" id="loginForm_id">
+										<div class="form-group">
+											<label for="" class="col-sm-3 control-label">用户名：</label>
+											<div class="col-sm-6">
+												<input type="text" name="username" class="form-control" id="loginUserName_id" >
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="" class="col-sm-3 control-label">密码：</label>
+											<div class="col-sm-6">
+												<input type="password" name="password" class="form-control" id="loginPassword_id" >
+											</div>
+										</div>
+									</form>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary" id="loginSubmit_id">登录</button>
+									<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<ul class="nav nav-tabs">
+						<li class="active">
+							 <a class="topNaveList_class" href="userMain.html">首页</a>
+						</li>
+						<li>
+							 <a class="topNaveList_class"  href="lostProperty.html">失物/寻物</a>
+						</li>
+						<li>
+							 <!-- <!-- <a class="topNaveList_class"  href="findding.html">寻物启事</a> --> 
+						</li>
+						<li>
+							 <a class="topNaveList_class"  href="userNews.html">新闻中心</a>
+						</li>
+						<li>
+							 <a class="topNaveList_class"  href="guestBook.html">公共留言</a>
+						</li>
+						<li>
+							<a class="topNaveList_class"  href="help.html">帮助中心</a>
+						</li>
+						<li>
+							<a id="myInfo_id" class="topNaveList_class"  href="myInfo.html">个人中心</a>
+						</li>
+					</ul>
+				</div>
+			</div> 
+			<br />
+			<div class="row clearfix">
+				<div class="col-md-4 column">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title" style="text-align: center;">
+								物品分类
+							</h3>
+						</div>
+						<div class="panel-body typeDiv_class">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-8 column">
+					<div>
+						<img id="bigImages_id" style="width: 760px;height: 350px;" src="../../img/timg%20(6).jpg" />
+					</div>
+				</div>
+			</div>
+			<div class="row clearfix">
+				<div class="col-md-4 column">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								新闻中心
+								<span class="more_class" id="newsMore_id">更多>></span>
+							</h3>
+						</div>
+						<div class="panel-body">
+							<div class="articleList_class">
+							</div>
+						</div>
+					</div>
+					<!--查看新闻对话框-->
+					<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="showNewsDialog_id">
+						<div class="modal-dialog modal-lg" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h2 class="modal-title">新闻详情</h2>
+								</div>
+								<div class="modal-body">
+									<form  method="post" class="form-horizontal" id="showNewsForm_id">
+										<!-- 新闻 -->
+										<div class="news_content">
+											<!-- 新闻标题 -->
+											<div>
+												<h1 id="articleTitle_id"></h1>
+											</div>
+											<!-- 新闻类别 -->
+											<div style="font-size: 16px;">
+												<span>新闻类别：</span>
+												<span id="categoryType_id"></span>
+											</div>
+											<!-- 发布时间 -->
+											<div>
+												<h4 id="createTime_id"></h4>
+											</div>
+											<!-- 新闻来源 -->
+											<div>
+												<h4 id="articleSrc_id"></h4>
+											</div>
+											<!-- 图片 -->
+											<div class="img_class"></div>
+											<!-- 新闻正文 -->
+											<h3>新闻正文：</h3>
+											<div id="articleContent_id"></div>
+										</div>
+									</form>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								留言展示
+								<span class="more_class" id="releaseGuestBook_id">我要留言</span>
+							</h3>
+						</div>
+						<div class="panel-body">
+							<div class="guestBookList_class">
+							</div>
+						</div>
+					</div>
+					<!--发布留言对话框-->
+					<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="releaseGuestBookDialog_id">
+						<div class="modal-dialog modal-lg" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h2 class="modal-title">发布留言</h2>
+								</div>
+								<div class="modal-body">
+									<form  method="post" class="form-horizontal" id="releaseGuestBookForm_id">
+										<div class="form-group">
+											<div hidden="hidden" class="col-sm-2">
+												<input type="text" class="form-control" id="releaseGuestBookId_id" >
+											</div>
+											<label for="" class="col-sm-3 control-label">留言分类：</label>
+											<div class="col-sm-6">
+												<select name="guestbookType">
+													<option value="1">咨询</option>
+													<option value="2">感谢</option>
+													<option value="3">投诉</option>
+													<option value="4">建议</option>
+													<option value="5">其他</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="" class="col-sm-3 control-label">留言内容：</label>
+											<div class="col-sm-8">
+												<textarea name="guestbookContent"
+												        id="releaseGuestBookContent_id"
+												        class="field-textarea"
+												        placeholder="请输入留言内容" 
+														maxlength="240"
+														οnchange="this.value=this.value.substring(0, 240)"
+														οnkeydοwn="this.value=this.value.substring(0, 240)"
+														οnkeyup="this.value=this.value.substring(0, 240)"></textarea>
+											<span id="text-count2" value="">0</span>/240
+											</div>
+										</div>
+									</form>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary" id="releaseGuestBookSubmit_id">发布</button>
+									<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--查看留言对话框-->
+					<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="showGuestBookDialog_id">
+						<div class="modal-dialog modal-lg" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h2 class="modal-title">查看留言详情</h2>
+								</div>
+								<div class="modal-body">
+									<form  method="post" class="form-horizontal" id="showGuestBookForm_id">
+										<div class="form-group">
+											<label for="" class="col-sm-3 control-label">留言用户：</label>
+											<div class="col-sm-6">
+												<input type="text" readonly="readonly" class="form-control" id="showGuestBookUserName_id" >
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="" class="col-sm-3 control-label">留言分类：</label>
+											<div class="col-sm-6">
+												<input type="text" readonly="readonly" class="form-control" id="showGuestBookType_id" >
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="" class="col-sm-3 control-label">发布时间：</label>
+											<div class="col-sm-6">
+												<input type="text" readonly="readonly" class="form-control" id="showGuestBookTime_id" >
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="" class="col-sm-3 control-label">留言内容：</label>
+											<div class="col-sm-8">
+												<textarea name="guestbookContent" readonly="readonly"
+												        id="showGuestBookContent_id"
+												        class="field-textarea"
+												        ></textarea>
+											</div>
+										</div>
+									</form>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 column">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								失物招领
+							</h3>
+						</div>
+						<div class="panel-body shiwuzhaoling_class">
+						</div>
+					</div>
+				</div>
+				<!--失物招领信息详情对话框-->
+				<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="propertyInfoDialog_id">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h2 class="modal-title" id="dioTitle_id"></h2>
+							</div>
+							<div class="modal-body">
+								<form  method="post" class="form-horizontal" id="propertyInfoForm_id">
+									<div class="form-group">
+										<label for="" class="col-sm-3 control-label">物品图片：</label>
+										<div class="col-sm-6 imgDiv_class">
+										</div>
+									</div>
+									<div class="form-group">
+										<div hidden="hidden" class="col-sm-3">
+											<input type="text" class="form-control" id="propertyId_id" >
+										</div>
+										<label for="" class="col-sm-3 control-label">物品名称：</label>
+										<div class="col-sm-6">
+											<input type="text" readonly="readonly" class="form-control property" id="propertyName_id" >
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="" class="col-sm-3 control-label" id="propertyAddTitle_id"></label>
+										<div class="col-sm-6">
+											<input type="text" readonly="readonly"  class="form-control property" id="propertyAddDetail_id" >
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="" class="col-sm-3 control-label">物品分类：</label>
+										<div class="col-sm-6">
+											<input type="text" readonly="readonly"  class="form-control property" id="propertyModule_id" >
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="" class="col-sm-3 control-label">详细描述：</label>
+										<div class="col-sm-6">
+											<textarea readonly="readonly"
+											        id="propertyDetail_id"
+											        class="field-textarea">
+											</textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="" class="col-sm-3 control-label" id="propertyManTitle_id"></label>
+										<div class="col-sm-6">
+											<input type="text" readonly="readonly"  class="form-control property" id="propertyMan_id" >
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="" class="col-sm-3 control-label">联系方式：</label>
+										<div class="col-sm-6">
+											<input type="text" readonly="readonly"  class="form-control property" id="propertyPhoneNumber_id" >
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary" id="propertySubmit_id">认领</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 column">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								寻物启事
+							</h3>
+						</div>
+						<div class="panel-body xunwuqishi_class">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<div class="foot_class">
+						<div class="footNav_class">
+							&nbsp;<a href="lostProperty.html">失物招领</a>&nbsp;|
+							&nbsp;<a href="findding.html">寻物启事</a>&nbsp;|
+							&nbsp;<a href="userNews.html">新闻中心</a>&nbsp;|
+							&nbsp;<a href="guestBook.html">公共留言</a>&nbsp;|
+							&nbsp;<a href="help.html">帮助中心</a>&nbsp;
+						</div>
+						<div class="footNav_class">
+							<p>
+								地址：XX省XX市XX区XX路XX号
+								&nbsp;&nbsp;
+								电话：XXXXXXXXXXX
+								&nbsp;&nbsp;
+								邮箱：XXXXXXXXX@XXX.com
+							</p>
+						</div>
+						<div class="footNav_class">
+							copyright © 2019-2020Powered By XXX V1.0
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

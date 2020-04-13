@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edu.lostandfound.dao.GoodsTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.edu.lostandfound.po.GoodsType" >
+    <id column="goods_type_id" property="goodsTypeId" jdbcType="INTEGER" />
+    <result column="goods_type_name" property="goodsTypeName" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    goods_type_id, goods_type_name, state, parent_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from goods_type
+    where goods_type_id = #{goodsTypeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods_type
+    where goods_type_id = #{goodsTypeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.edu.lostandfound.po.GoodsType" >
+    insert into goods_type (goods_type_id, goods_type_name, state,
+      parent_id)
+    values (#{goodsTypeId,jdbcType=INTEGER}, #{goodsTypeName,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR},
+      #{parentId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.edu.lostandfound.po.GoodsType" >
+    insert into goods_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodsTypeId != null" >
+        goods_type_id,
+      </if>
+      <if test="goodsTypeName != null" >
+        goods_type_name,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodsTypeId != null" >
+        #{goodsTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsTypeName != null" >
+        #{goodsTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.edu.lostandfound.po.GoodsType" >
+    update goods_type
+    <set >
+      <if test="goodsTypeName != null" >
+        goods_type_name = #{goodsTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where goods_type_id = #{goodsTypeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.edu.lostandfound.po.GoodsType" >
+    update goods_type
+    set goods_type_name = #{goodsTypeName,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER}
+    where goods_type_id = #{goodsTypeId,jdbcType=INTEGER}
+  </update>
+
+
+  <!-- 分页 -->
+  <select id="getGoodsTypeList" parameterType="com.edu.lostandfound.utils.PageData" resultType="com.edu.lostandfound.po.GoodsType">
+    select gt.*,gp.goods_type_name as parent_name from goods_type gt left join goods_type gp on gt.parent_id = gp.goods_type_id
+    <where>
+      <if test="paramObj.goodsTypeName != null">
+        gt.goods_type_name like #{paramObj.goodsTypeName,jdbcType=VARCHAR}
+      </if>
+      <if test="paramObj.parentId != null">
+        and gt.parent_id = #{paramObj.parentId,jdbcType=VARCHAR}
+      </if>
+    </where>
+    <if test="page != null and size != null">
+      limit #{page},#{size}
+    </if>
+  </select>
+  <select id="getGoodsTypeListCount" resultType="Long" parameterType="com.edu.lostandfound.po.GoodsType">
+    select count(goods_type_id) from goods_type
+    <where>
+      <if test="goodsTypeName != null">
+        goods_type_name like #{goodsTypeName,jdbcType=VARCHAR}
+      </if>
+      <if test="parentId != null">
+        and parent_id = #{parentId,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+
+  <select id="getGoodsTypeByParentId" parameterType="Integer" resultType="com.edu.lostandfound.po.GoodsType">
+    select gt.*,gp.goods_type_name as parent_name from goods_type gt left join goods_type gp on gt.parent_id = gp.goods_type_id
+    where gt.parent_id = #{parentId,jdbcType=INTEGER}
+  </select>
+
+  <resultMap id="getAllGoodsTypeMap" type="com.edu.lostandfound.po.GoodsType">
+    <id column="goods_type_id" property="goodsTypeId" jdbcType="INTEGER" />
+    <result column="goods_type_name" property="goodsTypeName" jdbcType="VARCHAR" />
+    <collection property="goodsTypes" ofType="com.edu.lostandfound.po.GoodsType">
+      <id column="son_goods_type_id" property="goodsTypeId" jdbcType="INTEGER" />
+      <result column="son_goods_type_name" property="goodsTypeName" jdbcType="VARCHAR" />
+    </collection>
+  </resultMap>
+  <select id="getAllGoodsType"  resultMap="getAllGoodsTypeMap">
+    SELECT
+        gp.*, gt.goods_type_id AS son_goods_type_id,
+        gt.goods_type_name AS son_goods_type_name
+    FROM
+        goods_type gp
+    LEFT JOIN goods_type gt ON gt.parent_id = gp.goods_type_id
+    WHERE gp.parent_id = 0
+  </select>
+</mapper>

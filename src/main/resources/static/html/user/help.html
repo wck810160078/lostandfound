@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>帮助中心</title>
+		<script type="text/javascript" src="../../js/jQuery/jquery-2.2.3.min.js"></script>
+		<script type="text/javascript" src="../../js/jQuery/bootstrap/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="../../css/bootstrap/bootstrap.min.css" />
+		<script type="text/javascript" src="../../js/jQuery/bootstrap/bootstrap-paginator.min.js"></script>
+		<link rel="stylesheet" href="https://apps.bdimg.com/libs/bootstrap/3.2.0/css/bootstrap.min.css">
+		<!--toastr-->
+		<link rel="stylesheet" href="../../css/bootstrap/toastr/toastr.css" />
+		<script type="text/javascript" src="../../js/jQuery/bootstrap/toastr/toastr.min.js" ></script>
+		<!--validator表单验证插件-->
+		<link rel="stylesheet" href="../../css/bootstrap/validator/bootstrapValidator.css" />
+		<script type="text/javascript" src="../../js/jQuery/bootstrap/validator/bootstrapValidator.js" ></script>
+		<script type="text/javascript" src="../../js/jQuery/bootstrap/validator/zh_CN.js" ></script>
+			
+		<script src="../../js/url.js"></script>
+		<!-- 工具类方法 -->
+		<script src="../../js/toolsFunction.js"></script>
+		<link rel="stylesheet" href="../../css/user/help.css" />
+		<script type="text/javascript" src="../../js/user/help.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row clearfix navList">
+				<div class="col-md-12 column">
+					<div class="row clearfix">
+						<div class="col-md-10 column title_class">
+							<a href="userMain.html" id="title_id">
+								商丘一高中校园失物招领网站
+							</a>
+							&nbsp;&nbsp;|
+							<h3 style="display: inline;" id="userName"></h3>
+							<h3 style="display: inline;">,欢迎你</h3>
+						</div>
+						<div class="col-md-1 column">
+							<button type="button" class="btn btn-default function_class" id="login_id">登录</button>
+						</div>
+						<div class="col-md-1 column">
+							<button type="button" class="btn btn-default function_class" id="register_id">注册</button>
+						</div>
+						<div class="col-md-1 column">
+							 <button style="display: none;" type="button" class="btn btn-default function_class" id="logOut_id">退出</button>
+						</div>
+					</div>
+					<!-- 注册对话框 -->
+					<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="registerDialog_id">
+						<div class="modal-dialog modal-lg" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h2 class="modal-title">用户注册</h2>
+								</div>
+								<div class="modal-body">
+									<form  method="post" class="form-horizontal" id="registerForm_id" enctype="multipart/form-data">
+										<div class="form-group">
+											<div hidden="hidden" class="col-sm-2">
+												<input type="text" name="id" class="form-control" id="userId_id" >
+											</div>
+											<label for="" class="col-sm-3 control-label">用户名：</label>
+											<div class="col-sm-6">
+												<input type="text" name="userName" class="form-control" id="userName_id" >
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="" class="col-sm-3 control-label">真实姓名：</label>
+											<div class="col-sm-6">
+												<input type="text" name="name" class="form-control" id="name_id" >
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="" class="col-sm-3 control-label">密码：</label>
+											<div class="col-sm-6">
+												<input type="password" name="passw" class="form-control" id="passw_id" >
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="" class="col-sm-3 control-label">确认密码：</label>
+											<div class="col-sm-6">
+												<input type="password" name="password" class="form-control" id="password_id" >
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="" class="col-sm-3 control-label">邮箱：</label>
+											<div class="col-sm-6">
+												<input type="email" name="email" class="form-control" id="email_id" >
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="" class="col-sm-3 control-label">手机号码：</label>
+											<div class="col-sm-6">
+												<input type="text" name="phoneNumber" class="form-control" id="phoneNumber_id" >
+											</div>
+										</div>
+									</form>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary" id="registerSubmit_id">注册</button>
+									<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 登录对话框 -->
+					<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="loginDialog_id">
+						<div class="modal-dialog modal-lg" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h2 class="modal-title">登录</h2>
+								</div>
+								<div class="modal-body">
+									<form  method="post" class="form-horizontal" id="loginForm_id" enctype="multipart/form-data">
+										<div class="form-group">
+											<label for="" class="col-sm-3 control-label">用户名：</label>
+											<div class="col-sm-6">
+												<input type="text" name="username" class="form-control" id="loginUserName_id" >
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="" class="col-sm-3 control-label">密码：</label>
+											<div class="col-sm-6">
+												<input type="password" name="password" class="form-control" id="loginPassword_id" >
+											</div>
+										</div>
+									</form>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary" id="loginSubmit_id">登录</button>
+									<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<ul class="nav nav-tabs">
+						<li>
+							 <a class="topNaveList_class" href="userMain.html">首页</a>
+						</li>
+						<li>
+							 <a class="topNaveList_class"  href="lostProperty.html">失物/寻物</a>
+						</li>
+						<li>
+							 <!-- <a class="topNaveList_class"  href="findding.html">寻物启事</a> -->
+						</li>
+						<li>
+							 <a class="topNaveList_class"  href="userNews.html">新闻中心</a>
+						</li>
+						<li>
+							 <a class="topNaveList_class"  href="guestBook.html">公共留言</a>
+						</li>
+						<li class="active">
+							<a class="topNaveList_class"  href="help.html">帮助中心</a>
+						</li>
+						<li>
+							<a id="myInfo_id" class="topNaveList_class"  href="myInfo.html">个人中心</a>
+						</li>
+					</ul>
+				</div>
+			</div> 
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								联系我们
+							</h3>
+						</div>
+						<div class="panel-body">
+							<div class="lianxi_class">
+								<div>QQ：**********</div>
+								<div>电话：138********</div>
+								<div>邮箱：*********@***.com</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								友情链接
+							</h3>
+						</div>
+						<div class="panel-body">
+							<div class="lianjie_class">
+								<img id="diunale_id" class="wangzhan_class" src="../../img/diunale.jpg" />
+								<img id="shiwuzhaolingwang_id"  class="wangzhan_class" src="../../img/shiwuzhaolingwang.jpg" />
+								<img id="qidian8_id"  class="wangzhan_class" src="../../img/qidian8.jpg" />
+								<img id="zhongguoshiwuzhaoling_id"  class="wangzhan_class" src="../../img/zhongguoshiwuzhaoling2.jpg" />
+								<img id="xuexiao_id"  class="xuexiao_class" src="../../img/xuexiao.jpg" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<div class="foot_class">
+						<div class="footNav_class">
+							&nbsp;<a href="lostProperty.html">失物招领</a>&nbsp;|
+							&nbsp;<a href="findding.html">寻物启事</a>&nbsp;|
+							&nbsp;<a href="userNews.html">新闻中心</a>&nbsp;|
+							&nbsp;<a href="guestBook.html">公共留言</a>&nbsp;|
+							&nbsp;<a href="help.html">帮助中心</a>&nbsp;
+						</div>
+						<div class="footNav_class">
+							<p>
+								地址：XX省XX市XX区XX路XX号
+								&nbsp;&nbsp;
+								电话：XXXXXXXXXXX
+								&nbsp;&nbsp;
+								邮箱：XXXXXXXXX@XXX.com
+							</p>
+						</div>
+						<div class="footNav_class">
+							copyright © 2019-2020Powered By XXX V1.0
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

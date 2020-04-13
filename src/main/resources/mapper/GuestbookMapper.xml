@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edu.lostandfound.dao.GuestbookMapper" >
+  <resultMap id="BaseResultMap" type="com.edu.lostandfound.po.Guestbook" >
+    <id column="guestbook_id" property="guestbookId" jdbcType="INTEGER" />
+    <result column="guestbook_content" property="guestbookContent" jdbcType="VARCHAR" />
+    <result column="guestbook_type" property="guestbookType" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="guestbook_time" property="guestbookTime" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    guestbook_id, guestbook_content, guestbook_type, user_id, guestbook_time, state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from guestbook
+    where guestbook_id = #{guestbookId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from guestbook
+    where guestbook_id = #{guestbookId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.edu.lostandfound.po.Guestbook" >
+    insert into guestbook (guestbook_id, guestbook_content, guestbook_type, 
+      user_id, guestbook_time, state
+      )
+    values (#{guestbookId,jdbcType=INTEGER}, #{guestbookContent,jdbcType=VARCHAR}, #{guestbookType,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{guestbookTime,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.edu.lostandfound.po.Guestbook" >
+    insert into guestbook
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guestbookId != null" >
+        guestbook_id,
+      </if>
+      <if test="guestbookContent != null" >
+        guestbook_content,
+      </if>
+      <if test="guestbookType != null" >
+        guestbook_type,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="guestbookTime != null" >
+        guestbook_time,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guestbookId != null" >
+        #{guestbookId,jdbcType=INTEGER},
+      </if>
+      <if test="guestbookContent != null" >
+        #{guestbookContent,jdbcType=VARCHAR},
+      </if>
+      <if test="guestbookType != null" >
+        #{guestbookType,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="guestbookTime != null" >
+        #{guestbookTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.edu.lostandfound.po.Guestbook" >
+    update guestbook
+    <set >
+      <if test="guestbookContent != null" >
+        guestbook_content = #{guestbookContent,jdbcType=VARCHAR},
+      </if>
+      <if test="guestbookType != null" >
+        guestbook_type = #{guestbookType,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="guestbookTime != null" >
+        guestbook_time = #{guestbookTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where guestbook_id = #{guestbookId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.edu.lostandfound.po.Guestbook" >
+    update guestbook
+    set guestbook_content = #{guestbookContent,jdbcType=VARCHAR},
+      guestbook_type = #{guestbookType,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      guestbook_time = #{guestbookTime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=VARCHAR}
+    where guestbook_id = #{guestbookId,jdbcType=INTEGER}
+  </update>
+
+  <!-- 分页 -->
+  <select id="getGuestbookList" parameterType="com.edu.lostandfound.utils.PageData" resultType="com.edu.lostandfound.po.Guestbook">
+    select g.*,u.user_name from guestbook g left join sys_user u on g.user_id = u.id
+    <where>
+      <if test="paramObj.guestbookContent != null">
+        guestbook_content like #{paramObj.guestbookContent,jdbcType=VARCHAR}
+      </if>
+      <if test="paramObj.guestbookType != null">
+        and guestbook_type = #{paramObj.guestbookType,jdbcType=VARCHAR}
+      </if>
+      <if test="paramObj.userId != null">
+        and user_id = #{paramObj.userId,jdbcType=INTEGER}
+      </if>
+    </where>
+    order by guestbook_time desc
+    <if test="page != null and size != null">
+      limit #{page},#{size}
+    </if>
+  </select>
+  <select id="getGuestbookListCount" resultType="Long" parameterType="com.edu.lostandfound.po.Guestbook">
+    select count(guestbook_id) from guestbook
+    <where>
+      <if test="guestbookContent != null">
+        guestbook_content like #{guestbookContent,jdbcType=VARCHAR}
+      </if>
+      <if test="guestbookType != null">
+        and guestbook_type = #{guestbookType,jdbcType=VARCHAR}
+      </if>
+      <if test="userId != null">
+        and user_id = #{userId,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+</mapper>

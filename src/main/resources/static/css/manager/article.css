@@ -1,0 +1,28 @@
+@charset "utf-8";
+body {
+	padding: 0;
+	margin: 0;
+}
+#articleTab_id {
+	font-family: "楷体";
+	font-size: 18px;
+	table-layout:fixed
+} 
+.editSportNews_class {
+	height: 30px;
+	text-align: center;
+	line-height: 10px;
+}
+.removeSportNews_class {
+	height: 30px;
+	text-align: center;
+	line-height: 10px;
+}
+#changeImg_btn {
+	border: #000000 solid 1px;
+	font-size: 40px;
+}
+img{
+	width: 100px;
+	height: 50px;
+}

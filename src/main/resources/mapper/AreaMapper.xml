@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edu.lostandfound.dao.AreaMapper" >
+  <resultMap id="BaseResultMap" type="com.edu.lostandfound.po.Area" >
+    <id column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="area_remarks" property="areaRemarks" jdbcType="VARCHAR" />
+    <result column="area_type" property="areaType" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    area_id, area_name, area_remarks, area_type, state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from area
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from area
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.edu.lostandfound.po.Area" >
+    insert into area (area_id, area_name, area_remarks, 
+      area_type, state)
+    values (#{areaId,jdbcType=INTEGER}, #{areaName,jdbcType=VARCHAR}, #{areaRemarks,jdbcType=VARCHAR}, 
+      #{areaType,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.edu.lostandfound.po.Area" >
+    insert into area
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="areaName != null" >
+        area_name,
+      </if>
+      <if test="areaRemarks != null" >
+        area_remarks,
+      </if>
+      <if test="areaType != null" >
+        area_type,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaRemarks != null" >
+        #{areaRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="areaType != null" >
+        #{areaType,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.edu.lostandfound.po.Area" >
+    update area
+    <set >
+      <if test="areaName != null" >
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaRemarks != null" >
+        area_remarks = #{areaRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="areaType != null" >
+        area_type = #{areaType,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.edu.lostandfound.po.Area" >
+    update area
+    set area_name = #{areaName,jdbcType=VARCHAR},
+      area_remarks = #{areaRemarks,jdbcType=VARCHAR},
+      area_type = #{areaType,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR}
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </update>
+
+  <select id="getAreaList" parameterType="com.edu.lostandfound.utils.PageData" resultType="com.edu.lostandfound.po.Area">
+    select * from area
+    <where>
+      <if test="paramObj.areaName">
+        area_name like #{paramObj.areaName,jdbcType=VARCHAR}
+      </if>
+    </where>
+    <if test="page != null and size != null">
+      limit #{page},#{size}
+    </if>
+  </select>
+  <select id="getAreaListCount" resultType="Long" parameterType="com.edu.lostandfound.po.Area">
+    select count(area_id) from area
+    <where>
+      <if test="areaName">
+        area_name like #{areaName,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+
+</mapper>

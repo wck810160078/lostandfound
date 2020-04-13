@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edu.lostandfound.dao.LostGoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.edu.lostandfound.po.LostGoods" >
+    <id column="lost_goods_id" property="lostGoodsId" jdbcType="INTEGER" />
+    <result column="goods_type_id" property="goodsTypeId" jdbcType="INTEGER" />
+    <result column="get_lost_time" property="getLostTime" jdbcType="TIMESTAMP" />
+    <result column="create_user_id" property="createUserId" jdbcType="INTEGER" />
+    <result column="release_title" property="releaseTitle" jdbcType="VARCHAR" />
+    <result column="release_content" property="releaseContent" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="detailed_address" property="detailedAddress" jdbcType="VARCHAR" />
+    <result column="goods_image_url" property="goodsImageUrl" jdbcType="VARCHAR" />
+    <result column="get_lost_type" property="getLostType" jdbcType="INTEGER" />
+    <result column="claim_user_id" property="claimUserId" jdbcType="INTEGER" />
+    <result column="deal_time" property="dealTime" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    lost_goods_id, goods_type_id, get_lost_time, create_user_id, release_title, release_content,
+    area_id, detailed_address, goods_image_url, get_lost_type, claim_user_id, deal_time,
+    state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from lost_goods
+    where lost_goods_id = #{lostGoodsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from lost_goods
+    where lost_goods_id = #{lostGoodsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.edu.lostandfound.po.LostGoods" >
+    insert into lost_goods (lost_goods_id, goods_type_id, get_lost_time,
+      create_user_id, release_title, release_content,
+      area_id, detailed_address, goods_image_url,
+      get_lost_type, claim_user_id, deal_time,
+      state)
+    values (#{lostGoodsId,jdbcType=INTEGER}, #{goodsTypeId,jdbcType=INTEGER}, #{getLostTime,jdbcType=TIMESTAMP},
+      #{createUserId,jdbcType=INTEGER}, #{releaseTitle,jdbcType=VARCHAR}, #{releaseContent,jdbcType=VARCHAR},
+      #{areaId,jdbcType=INTEGER}, #{detailedAddress,jdbcType=VARCHAR}, #{goodsImageUrl,jdbcType=VARCHAR},
+      #{getLostType,jdbcType=INTEGER}, #{claimUserId,jdbcType=INTEGER}, #{dealTime,jdbcType=TIMESTAMP},
+      #{state,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.edu.lostandfound.po.LostGoods" >
+    insert into lost_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="lostGoodsId != null" >
+        lost_goods_id,
+      </if>
+      <if test="goodsTypeId != null" >
+        goods_type_id,
+      </if>
+      <if test="getLostTime != null" >
+        get_lost_time,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="releaseTitle != null" >
+        release_title,
+      </if>
+      <if test="releaseContent != null" >
+        release_content,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="detailedAddress != null" >
+        detailed_address,
+      </if>
+      <if test="goodsImageUrl != null" >
+        goods_image_url,
+      </if>
+      <if test="getLostType != null" >
+        get_lost_type,
+      </if>
+      <if test="claimUserId != null" >
+        claim_user_id,
+      </if>
+      <if test="dealTime != null" >
+        deal_time,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="lostGoodsId != null" >
+        #{lostGoodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsTypeId != null" >
+        #{goodsTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="getLostTime != null" >
+        #{getLostTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="releaseTitle != null" >
+        #{releaseTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="releaseContent != null" >
+        #{releaseContent,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="detailedAddress != null" >
+        #{detailedAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImageUrl != null" >
+        #{goodsImageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="getLostType != null" >
+        #{getLostType,jdbcType=INTEGER},
+      </if>
+      <if test="claimUserId != null" >
+        #{claimUserId,jdbcType=INTEGER},
+      </if>
+      <if test="dealTime != null" >
+        #{dealTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.edu.lostandfound.po.LostGoods" >
+    update lost_goods
+    <set >
+      <if test="goodsTypeId != null" >
+        goods_type_id = #{goodsTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="getLostTime != null" >
+        get_lost_time = #{getLostTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="releaseTitle != null" >
+        release_title = #{releaseTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="releaseContent != null" >
+        release_content = #{releaseContent,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="detailedAddress != null" >
+        detailed_address = #{detailedAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImageUrl != null" >
+        goods_image_url = #{goodsImageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="getLostType != null" >
+        get_lost_type = #{getLostType,jdbcType=INTEGER},
+      </if>
+      <if test="claimUserId != null" >
+        claim_user_id = #{claimUserId,jdbcType=INTEGER},
+      </if>
+      <if test="dealTime != null" >
+        deal_time = #{dealTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where lost_goods_id = #{lostGoodsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.edu.lostandfound.po.LostGoods" >
+    update lost_goods
+    set goods_type_id = #{goodsTypeId,jdbcType=INTEGER},
+      get_lost_time = #{getLostTime,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=INTEGER},
+      release_title = #{releaseTitle,jdbcType=VARCHAR},
+      release_content = #{releaseContent,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=INTEGER},
+      detailed_address = #{detailedAddress,jdbcType=VARCHAR},
+      goods_image_url = #{goodsImageUrl,jdbcType=VARCHAR},
+      get_lost_type = #{getLostType,jdbcType=INTEGER},
+      claim_user_id = #{claimUserId,jdbcType=INTEGER},
+      deal_time = #{dealTime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=VARCHAR}
+    where lost_goods_id = #{lostGoodsId,jdbcType=INTEGER}
+  </update>
+
+  <delete id="deleteByAreaId" parameterType="Integer">
+    delete from lost_goods where area_id = #{areaId,jdbcType=INTEGER}
+  </delete>
+
+  <delete id="deleteByGoodsTypeId" parameterType="Integer">
+    delete from lost_goods where goods_type_id = #{goodsTypeId,jdbcType=INTEGER}
+  </delete>
+
+  <!-- 分页 -->
+  <select id="getLostGoodsList" parameterType="com.edu.lostandfound.utils.PageData" resultType="com.edu.lostandfound.po.LostGoods">
+    SELECT
+        lg.*,su.user_name,su.phone_number,gt.goods_type_name,csu.user_name as claim_name
+    FROM
+        lost_goods lg
+    INNER JOIN sys_user su ON lg.create_user_id = su.id
+    LEFT JOIN sys_user csu ON lg.claim_user_id = csu.id
+    INNER JOIN goods_type gt ON gt.goods_type_id = lg.goods_type_id
+    <where>
+      <if test="paramObj.releaseTitle != null">
+        (lg.release_title like #{paramObj.releaseTitle,jdbcType=VARCHAR}
+        or lg.release_content like #{paramObj.releaseTitle,jdbcType=VARCHAR}
+        or lg.detailed_address like #{paramObj.releaseTitle,jdbcType=VARCHAR})
+      </if>
+      <if test="paramObj.getLostType != null">
+        and get_lost_type = #{paramObj.getLostType,jdbcType=INTEGER}
+      </if>
+      <if test="paramObj.state != null">
+        and lg.state = #{paramObj.state,jdbcType=VARCHAR}
+      </if>
+      <if test="paramObj.createUserId != null">
+        and (create_user_id = #{paramObj.createUserId,jdbcType=INTEGER}
+        or claim_user_id = #{paramObj.createUserId,jdbcType=INTEGER})
+      </if>
+      <if test="paramObj.startTime != null and paramObj.endTime != null">
+        and get_lost_time between #{paramObj.startTime} and #{paramObj.endTime}
+      </if>
+      <if test="paramObj.goodsTypeId != null">
+        and lg.goods_type_id = #{paramObj.goodsTypeId,jdbcType=INTEGER}
+      </if>
+    </where>
+    ORDER BY FIELD(lg.state,'DEAL','PASS','UNREVIEWED','FINISH','NOTPASS')
+  </select>
+  <select id="getLostGoodsListCount" resultType="Long" parameterType="com.edu.lostandfound.po.LostGoods">
+    SELECT
+     count(lost_goods_id)
+    FROM
+    lost_goods lg
+    INNER JOIN area a ON a.area_id = lg.area_id
+    <where>
+      <if test="releaseTitle != null">
+        (lg.release_title like #{releaseTitle,jdbcType=VARCHAR}
+        or lg.release_content like #{releaseTitle,jdbcType=VARCHAR}
+        or a.area_name like #{releaseTitle,jdbcType=VARCHAR})
+      </if>
+      <if test="getLostType != null">
+        and lg.get_lost_type = #{getLostType,jdbcType=INTEGER}
+      </if>
+      <if test="state != null">
+        and lg.state = #{state,jdbcType=VARCHAR}
+      </if>
+      <if test="createUserId != null">
+        and lg.create_user_id = #{createUserId,jdbcType=INTEGER}
+      </if>
+      <if test="startTime != null and endTime != null">
+        and get_lost_time between #{startTime} and #{endTime}
+      </if>
+      <if test="goodsTypeId != null">
+        and goods_type_id = #{goodsTypeId,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+
+  <update id="changeState" parameterType="com.edu.lostandfound.po.LostGoods" >
+    update lost_goods
+    <set>
+      state = #{state,jdbcType=VARCHAR},
+      deal_time = #{dealTime,jdbcType=TIMESTAMP},
+      <if test="claimUserId != null">
+        claim_user_id = #{claimUserId,jdbcType=INTEGER}
+      </if>
+    </set>
+    where lost_goods_id = #{lostGoodsId,jdbcType=INTEGER}
+  </update>
+
+</mapper>

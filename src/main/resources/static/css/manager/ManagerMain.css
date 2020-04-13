@@ -1,0 +1,30 @@
+@charset "utf-8";
+body {
+	margin:0; 
+	padding:0;
+}
+/* ul {
+	margin: 0;
+	padding: 0;
+} */
+ul li {
+	/* display: inline; */
+	list-style-type: none;
+	margin-top: 20px;
+}
+.ManagerInfoDialog_id {
+	font-family: "楷体";
+	font-size: 18px;
+}
+
+.nav-ul{
+	width: 800px;
+	margin-top: 50px;
+	padding-left: 60px;
+}
+.row_div{
+	background-color: skyblue;
+}
+.panel-group{
+	text-align: center;
+}

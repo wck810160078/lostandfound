@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>商丘一高中校园失物招领网站后台管理</title>
+		<script type="text/javascript" src="../../js/jQuery/jquery-2.2.3.min.js"></script>
+		<script type="text/javascript" src="../../js/jQuery/bootstrap/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="../../css/bootstrap/bootstrap.min.css" />
+		<script type="text/javascript" src="../../js/jQuery/bootstrap/bootstrap-paginator.min.js"></script>
+		<link rel="stylesheet" href="https://apps.bdimg.com/libs/bootstrap/3.2.0/css/bootstrap.min.css">
+		<!--toastr-->
+		<link rel="stylesheet" href="../../css/bootstrap/toastr/toastr.css" />
+		<script type="text/javascript" src="../../js/jQuery/bootstrap/toastr/toastr.min.js" ></script>
+		<!--validator表单验证插件-->
+		<link rel="stylesheet" href="../../css/bootstrap/validator/bootstrapValidator.css" />
+		<script type="text/javascript" src="../../js/jQuery/bootstrap/validator/bootstrapValidator.js" ></script>
+		<script type="text/javascript" src="../../js/jQuery/bootstrap/validator/zh_CN.js" ></script>
+		<script type="text/javascript" src="../../js/jQuery/bootstrap/bootstrap-hover-dropdown.min.js"></script>
+		
+		<script src="../../js/url.js"></script>
+		<!-- 工具类方法 -->
+		<script src="../../js/toolsFunction.js"></script>
+		<link rel="stylesheet" href="../../css/manager/ManagerMain.css" />
+		<script type="text/javascript" src="../../js/manager/managerMain.js"></script>
+	</head>
+	<body>
+		<!-- 所有内容 -->
+		<div class="container">
+			<!-- 导航栏 -->
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<nav class="navbar navbar-default" role="navigation">
+						<div class="navbar-header">
+							<a class="navbar-brand" href="ManagerMain.html">商丘一高中校园失物招领网站后台管理</a>
+						</div>
+						<center>
+							<div class="row_div">
+								<ul class="nav nav-tabs nav-ul">
+									<li><a href="article.html" target="iframe_name">新闻管理</a></li>
+									<li><a href="guestbook.html" target="iframe_name">公共留言</a></li>
+									<li><a href="user.html" target="iframe_name">用户管理</a></li>
+									<li><a href="goodsType.html" target="iframe_name">物品分类</a></li>
+									<li><a href="lostgoods.html" target="iframe_name">失物招领</a></li>
+									<li><a href="findgoods.html" target="iframe_name">寻物启事</a></li>
+									<li>
+										<li class="dropdown">
+										    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
+										        个人中心 <b class="caret"></b>
+										    </a>
+										    <ul class="dropdown-menu">
+										        <li><a tabindex="-1" id="changePw">修改密码</a></li>
+										        <li><a tabindex="-1" id="logout_id">退出</a></li>
+										        <li class="divider"></li>
+			
+										    </ul>
+										</li>
+									</li>
+									<li><button type="button" class="btn btn-default function_class" id="login_id">登录</button></li>
+								</ul>
+							</div>
+						</center>
+					</nav>
+				</div>
+			</div>
+			<!-- 登录对话框 -->
+			<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="loginDialog_id">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h2 class="modal-title">登录</h2>
+						</div>
+						<div class="modal-body">
+							<form  method="post" class="form-horizontal" id="loginForm_id">
+								<div class="form-group">
+									<label for="" class="col-sm-3 control-label">用户名：</label>
+									<div class="col-sm-6">
+										<input type="text" name="username" class="form-control" id="loginUserName_id" >
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="" class="col-sm-3 control-label">密码：</label>
+									<div class="col-sm-6">
+										<input type="password" name="password" class="form-control" id="loginPassword_id" >
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" id="loginSubmit_id">登录</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 修改密码对话框 -->
+			<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="changePwDialog_id">
+				<div class="modal-dialog modal-lg" role="document" style="width: 500px;">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4>修改密码</h4>
+						</div>
+						<div class="modal-body">
+							<form  method="post" class="form-horizontal" id="changePwForm_id" enctype="multipart/form-data">
+								<div class="form-group">
+									<label for="" class="col-sm-3 control-label">旧密码：</label>
+									<div class="col-sm-6">
+										<input type="password" name="oldPassword" class="form-control" id="oldPassword_id" >
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="" class="col-sm-3 control-label">新密码：</label>
+									<div class="col-sm-6">
+										<input type="password" name="passw" class="form-control" id="passw_id" >
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="" class="col-sm-3 control-label">确认密码：</label>
+									<div class="col-sm-6">
+										<input type="password" name="newPassword" class="form-control" id="password_id" >
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" id="changePasswordSubmit_id">保存</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="news_data" style="width:980px;height: 500px;float: right;margin-right:80px ;">
+				<div class="panel-group" id="data_group">
+					<iframe src="article.html" frameborder="0" scrolling="auto" id="iframe_id" name="iframe_name" οnlοad="changeFrameHeight()" style="min-height:1500px;width:100%;height:100%;"></iframe>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

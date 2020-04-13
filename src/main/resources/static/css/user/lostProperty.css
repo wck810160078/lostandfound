@@ -1,0 +1,162 @@
+@charset "utf-8";
+body {
+	margin: 0;
+	padding: 0;
+	/* font-family: "仿宋"; */
+	font-family: "楷体";
+}
+a {
+	text-decoration: none;
+	color: #000000;
+	font-size: 16px;
+}
+a:hover {
+	text-decoration: none;
+}
+a:focus {
+	text-decoration: none;
+}
+#title_id {
+	font-family: "楷体";
+	font-size: 30px;
+	color: black;
+}
+.navList {
+	border-radius: 5px;
+	background-color: #b8c2ff;
+}
+.function_class {
+	margin-top: 10px;
+	color: blue;
+	height: 40px;
+	width: 60px;
+}
+.releaseLost_class {
+	margin-top: 10px;
+	color: blue;
+	height: 40px;
+	width: 170px;
+}
+.topNaveList_class {
+	font-family: "楷体";
+	font-size: 20px;
+	color: black;
+}
+.seachDiv_class {
+	width: 500px;
+	height: 60px;
+	float: right;
+}
+.searchContent_class {
+	display: inline;
+	height: 40px;
+	margin-top: 10px;
+}
+#searchContent_id {
+	width: 70%;
+}
+.typeInfoP_class {
+	border-right: black solid 1px;
+}
+.typeInfo_class {
+	border-right: black solid 1px;
+}
+.more_class {
+	float: right;
+}
+.jiantou_class {
+	color: red;
+}
+.gonggao_class {
+	width:246px;
+	height:30px;
+	overflow: hidden;
+	text-overflow: ellipsis; 
+	-o-text-overflow: ellipsis;
+	white-space:nowrap;
+	display:block;
+}
+.iamges {
+	height: 120px;
+}
+.images_img {
+	width: 100%;
+	height: 100%;
+}
+.lostPropertyList_class {
+	width: 1170px;
+}
+.lostPropertyInfo_class {
+	width: 360px;
+	height: 420px;
+	margin-left: 30px;
+	margin-bottom: 30px;
+	border: gainsboro solid 1px;
+	border-radius: 5px;
+	font-size: 16px;
+	float: left;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap
+}
+.lostPropertyImg_class {
+	width: 340px;
+	height: 160px;
+	margin: 10px 10px;
+	border-radius: 5px;
+}
+#lostPropertyInfoForm_id,#releaseLostPropertyInfoForm_id,#propertyInfoForm_id {
+	font-size: 20px;
+}
+.foot_class {
+	text-align: center;
+	height: 150px;
+}
+.footNav_class {
+	height: 30px;
+}
+.TypeDiv_class {
+	margin-top: 10px;
+	float: left;
+}
+.page {
+	text-align: center;
+	height: 50px;
+	width: 80%;
+	margin-left: 10%;
+}
+.hh {
+	height: 10px;
+}
+.foot_class {
+	text-align: center;
+	height: 150px;
+	margin-top: 30px;
+	padding-top: 30px;
+	border-top: #000000 solid 1px;
+}
+#propertyDetail_id {
+	height: 400px;
+	width: 100%;
+	resize: none;
+	overflow:hidden;
+	overflow-y: hidden;
+}
+.articleImageUrl_class {
+	width: 500px;
+}
+.property {
+	font-size: 20px;
+}
+#releaseLostPropertyDetail_id {
+	height: 260px;
+	width: 100%;
+	resize: none;
+	overflow:hidden;
+	overflow-y: hidden;
+}
+#goodsTypeSel_id {
+	background-color: yellow;
+	display: inline;
+	border: #000000 solid 1px;
+}

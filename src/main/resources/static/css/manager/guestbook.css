@@ -1,0 +1,13 @@
+@charset "utf-8";
+body {
+	margin: 0;
+	padding: 0;
+}
+#guestbookContent_id {
+	height: 180px;
+	width: 80%;
+	resize: none;
+	overflow:hidden;
+	overflow-y: hidden;
+	margin-left: 10%;
+}
